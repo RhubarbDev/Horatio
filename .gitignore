@@ -31,5 +31,7 @@
 *.out
 *.app
 
-# Build folder
+# Build folder + Misc
 build/
+install/
+.*/
