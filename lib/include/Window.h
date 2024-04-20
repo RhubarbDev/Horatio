@@ -16,6 +16,11 @@ namespace Horatio
     {
     public:
         Window(const std::string& window_name, int width, int height, const std::vector<Hint>& window_hints = {});
+        ~Window();
+        bool should_close = false;
+        void poll_events();
+        void swap_buffers();
+        void clear_buffer();
     private:
         GLFWwindow* window;
     };

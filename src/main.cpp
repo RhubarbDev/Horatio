@@ -9,4 +9,11 @@ int main()
     test_hint.value = false;
 
     Horatio::Window window("test", 500, 500, { test_hint });
+
+    while(!window.should_close)
+    {
+        window.poll_events();
+        window.clear_buffer();
+        window.swap_buffers();
+    }
 }
