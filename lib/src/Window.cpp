@@ -47,16 +47,20 @@ namespace Horatio
 
         window = glfwCreateWindow(width, height, window_name.c_str(), fullscreen ? glfwGetPrimaryMonitor() : nullptr, nullptr);
 
+        if(!window)
+        {
+            throw std::runtime_error("Couldn't create window");
+        }
+
         current_windows[window] = this;
+
+        if(glewInit() != GLEW_OK)
+        {
+            throw std::runtime_error("Couldn't initialse GLEW");
+        }
 
         glfwSetWindowCloseCallback(window, window_close_callback);
         glfwSetKeyCallback(window, key_callback);
-
-        if(!window)
-        {
-            glfwTerminate();
-            throw std::runtime_error("Couldn't create window");
-        }
     }
 
     Window::~Window()
