@@ -23,6 +23,8 @@ target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 target_sources(${PROJECT_NAME}
     PRIVATE
         src/Window.cpp
+        src/Projection.h
+        src/Projection.cpp
 )
 
 target_include_directories(${PROJECT_NAME}

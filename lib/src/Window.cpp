@@ -1,6 +1,7 @@
 #include "Window.h"
 
 #include <GL/glew.h>
+#define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 #include <filesystem>
 #include <stdexcept>
@@ -26,7 +27,7 @@ namespace Horatio
         }
     }
 
-    Window::Window(const std::string &window_name, int width, int height, const std::vector<Hint>& window_hints)
+    Window::Window(const std::string &window_name, int width, int height, bool fullscreen, const std::vector<Hint>& window_hints)
     {
         if(!glfwInit())
         {
@@ -42,7 +43,9 @@ namespace Horatio
             }
         }
 
-        window = glfwCreateWindow(width, height, window_name.c_str(), nullptr, nullptr);
+        glfwSwapInterval(1);
+
+        window = glfwCreateWindow(width, height, window_name.c_str(), fullscreen ? glfwGetPrimaryMonitor() : nullptr, nullptr);
 
         current_windows[window] = this;
 
@@ -58,6 +61,7 @@ namespace Horatio
 
     Window::~Window()
     {
+        current_windows.erase(window);
         glfwDestroyWindow(window);
     }
 

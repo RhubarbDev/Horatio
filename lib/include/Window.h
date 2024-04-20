@@ -15,7 +15,7 @@ namespace Horatio
     class Window
     {
     public:
-        Window(const std::string& window_name, int width, int height, const std::vector<Hint>& window_hints = {});
+        Window(const std::string& window_name, int width, int height, bool fullscreen = false, const std::vector<Hint>& window_hints = {});
         ~Window();
         bool should_close = false;
         void poll_events();
