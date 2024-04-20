@@ -1,12 +1,25 @@
 #include "Window.h"
 
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 #include <filesystem>
 #include <stdexcept>
 
-Window::Window(const std::string &config_path)
+namespace Horatio
 {
-    if(!std::filesystem::exists(config_path))
+    Window::Window(const std::string &window_name, int width, int height)
     {
-        throw std::invalid_argument("Invalid config_path provided.");
+        if(!glfwInit())
+        {
+            throw std::runtime_error("Failed to initialise GLFW");
+        }
+
+        window = glfwCreateWindow(width, height, window_name.c_str(), nullptr, nullptr);
+
+        if(!window)
+        {
+            glfwTerminate();
+            throw std::runtime_error("Couldn't create window");
+        }
     }
 }

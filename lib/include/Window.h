@@ -1,8 +1,16 @@
 #pragma once
+
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 #include <string>
 
-class Window
+namespace Horatio
 {
-public:
-    Window(const std::string& config_path);
-};
+    class Window
+    {
+    public:
+        Window(const std::string& window_name, int width, int height);
+    private:
+        GLFWwindow* window;
+    };
+}
