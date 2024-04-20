@@ -3,6 +3,10 @@
 
 int main()
 {
-    std::cout << "this is a test" << std::endl; 
-    Horatio::Window window("test", 500, 500);
+    Horatio::Hint test_hint;
+
+    test_hint.hint = 0x00020003; // window resizable
+    test_hint.value = false;
+
+    Horatio::Window window("test", 500, 500, { test_hint });
 }

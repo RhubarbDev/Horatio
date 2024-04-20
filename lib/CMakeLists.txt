@@ -18,6 +18,8 @@ endif()
 
 add_library(${PROJECT_NAME})
 
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
+
 target_sources(${PROJECT_NAME}
     PRIVATE
         src/Window.cpp
