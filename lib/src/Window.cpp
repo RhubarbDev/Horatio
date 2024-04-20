@@ -54,9 +54,11 @@ namespace Horatio
 
         current_windows[window] = this;
 
-        if(glewInit() != GLEW_OK)
+        glfwMakeContextCurrent(window);
+        const auto error = glewInit();
+        if(error != GLEW_OK)
         {
-            throw std::runtime_error("Couldn't initialse GLEW");
+            throw std::runtime_error("Couldn't initialse GLEW: " + std::string(reinterpret_cast<char const*>(glewGetErrorString(error))));
         }
 
         glfwSetWindowCloseCallback(window, window_close_callback);

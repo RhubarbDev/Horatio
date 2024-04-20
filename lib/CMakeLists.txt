@@ -25,6 +25,7 @@ target_sources(${PROJECT_NAME}
         src/Window.cpp
         src/Projection.h
         src/Projection.cpp
+        src/Shader.cpp
 )
 
 target_include_directories(${PROJECT_NAME}
