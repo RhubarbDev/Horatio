@@ -68,11 +68,6 @@ namespace Horatio
         glfwSetKeyCallback(window.get(), key_callback);
     }
 
-    Window::~Window()
-    {
-        if(!!window) glfwDestroyWindow(window.get());
-    }
-
     void Window::poll_events()
     {
         glfwPollEvents();

@@ -2,8 +2,6 @@
 
 #include "Window.h"
 
-#include <memory>
-
 namespace Horatio
 {
     class Game
@@ -14,6 +12,6 @@ namespace Horatio
         virtual void update() = 0;
         virtual void render() = 0;
     protected:
-        std::unique_ptr<Window> primary_window; // a primary window is required
+        Window primary_window; // a primary window is required
     };
 }
