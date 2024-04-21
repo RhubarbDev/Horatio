@@ -12,11 +12,10 @@
 
 namespace Horatio
 {
-    static std::unordered_map<GLFWwindow*, Window*> current_windows;
-
     static void window_close_callback(GLFWwindow* window)
     {
-        current_windows[window]->should_close = true;
+        Window* win = static_cast<Window*>(glfwGetWindowUserPointer(window));
+        win->should_close = true;
     }
 
     static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -52,7 +51,7 @@ namespace Horatio
             throw std::runtime_error("Couldn't create window");
         }
 
-        current_windows[window] = this;
+        glfwSetWindowUserPointer(window, this);
 
         glfwMakeContextCurrent(window);
         const auto error = glewInit();
@@ -67,7 +66,6 @@ namespace Horatio
 
     Window::~Window()
     {
-        current_windows.erase(window);
         glfwDestroyWindow(window);
     }
 
