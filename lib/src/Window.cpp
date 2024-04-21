@@ -30,11 +30,6 @@ namespace Horatio
         }
     }
 
-    Window::Window() : projection(0, 0, 0, 0)
-    {
-        window = nullptr;
-    }
-
     Window::Window(const std::string &window_name, int width, int height, bool fullscreen, const std::vector<Hint> &window_hints) : projection(0, width, 0, height)
     {
         if(!glfwInit())
@@ -61,8 +56,8 @@ namespace Horatio
         }
 
         glfwSetWindowUserPointer(window, this);
-
         glfwMakeContextCurrent(window);
+
         const auto error = glewInit();
         if(error != GLEW_OK)
         {
@@ -70,6 +65,7 @@ namespace Horatio
         }
 
         glfwSetWindowCloseCallback(window, window_close_callback);
+        glfwSetWindowSizeCallback(window, window_size_callback);
         glfwSetKeyCallback(window, key_callback);
     }
 

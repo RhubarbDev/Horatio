@@ -1,5 +1,7 @@
 #include "Horatio/Game.h"
 
+#include "Horatio/Window.h"
+
 #include <nlohmann/json.hpp>
 
 #include <filesystem>
@@ -29,12 +31,12 @@ namespace Horatio
         int width = data["window"]["width"];
         int height = data["window"]["height"];
 
-        primary_window = Window(name, width, height);
+        primary_window = new Window(name, width, height);
     }
 }
 
 bool Horatio::Game::finished() const
 {
     // put other conditions for game to end here
-    return primary_window.should_close;
+    return primary_window->should_close;
 }

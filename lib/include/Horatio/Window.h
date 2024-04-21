@@ -17,7 +17,6 @@ namespace Horatio
     class Window
     {
     public:
-        Window();
         Window(const std::string& window_name, int width, int height, bool fullscreen = false, const std::vector<Hint>& window_hints = {});
         ~Window();
         Projection projection;

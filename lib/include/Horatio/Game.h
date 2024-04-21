@@ -11,7 +11,7 @@ namespace Horatio
         bool finished() const;
         virtual void update() = 0;
         virtual void render() = 0;
-    private:
-        Window primary_window; // a primary window is required
+    protected:
+        Window* primary_window; // a primary window is required
     };
 }
