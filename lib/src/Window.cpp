@@ -78,9 +78,9 @@ namespace Horatio
         glfwDestroyWindow(window);
     }
 
-    void Window::poll_events() 
+    void Window::poll_events()
     {
-        glfwPollEvents(); 
+        glfwPollEvents();
     }
 
     void Window::swap_buffers()

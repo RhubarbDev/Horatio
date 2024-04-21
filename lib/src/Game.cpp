@@ -1,7 +1,10 @@
 #include "Horatio/Game.h"
 
+#include <nlohmann/json.hpp>
+
 #include <filesystem>
 #include <stdexcept>
+#include <fstream>
 
 namespace Horatio
 {
@@ -18,6 +21,14 @@ namespace Horatio
             throw std::invalid_argument("Config file not JSON.");
         }
 
-        primary_window = Window("test", 500, 500);
+        std::ifstream file(config_file);
+        nlohmann::json data = nlohmann::json::parse(file);
+
+        // add validation        
+        std::string name = data["window"]["window_name"];
+        int width = data["window"]["width"];
+        int height = data["window"]["height"];
+
+        primary_window = Window(name, width, height);
     }
 }
