@@ -8,6 +8,7 @@ namespace Horatio
     {
     public:
         Game(const std::string& config_file);
+        bool finished() const;
         virtual void update() = 0;
         virtual void render() = 0;
     private:

@@ -9,6 +9,11 @@ target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 target_sources(${PROJECT_NAME}
     PRIVATE
         src/main.cpp
+        src/TestGame.h
+        src/TestGame.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Horatio)
+
+# Probably not the correct way to do this
+file(COPY ${CMAKE_CURRENT_SORUCE_DIR}res DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

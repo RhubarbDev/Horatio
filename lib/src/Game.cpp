@@ -32,3 +32,9 @@ namespace Horatio
         primary_window = Window(name, width, height);
     }
 }
+
+bool Horatio::Game::finished() const
+{
+    // put other conditions for game to end here
+    return primary_window.should_close;
+}
