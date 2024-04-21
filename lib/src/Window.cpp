@@ -1,4 +1,4 @@
-#include "Window.h"
+#include "Horatio/Window.h"
 
 #include <GL/glew.h>
 #define GLFW_INCLUDE_NONE
@@ -30,7 +30,12 @@ namespace Horatio
         }
     }
 
-    Window::Window(const std::string &window_name, int width, int height, bool fullscreen, const std::vector<Hint>& window_hints) : projection(0, width, 0, height)
+    Window::Window() : projection(0, 0, 0, 0)
+    {
+        window = nullptr;
+    }
+
+    Window::Window(const std::string &window_name, int width, int height, bool fullscreen, const std::vector<Hint> &window_hints) : projection(0, width, 0, height)
     {
         if(!glfwInit())
         {
@@ -73,9 +78,9 @@ namespace Horatio
         glfwDestroyWindow(window);
     }
 
-    void Window::poll_events()
+    void Window::poll_events() 
     {
-        glfwPollEvents();
+        glfwPollEvents(); 
     }
 
     void Window::swap_buffers()

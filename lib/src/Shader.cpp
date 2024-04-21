@@ -1,4 +1,4 @@
-#include "Shader.h"
+#include "Horatio/Shader.h"
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
