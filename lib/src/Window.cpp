@@ -14,8 +14,12 @@ namespace Horatio
 {
     static void window_close_callback(GLFWwindow* window)
     {
-        Window* win = static_cast<Window*>(glfwGetWindowUserPointer(window));
-        win->should_close = true;
+        static_cast<Window*>(glfwGetWindowUserPointer(window))->should_close = true;
+    }
+
+    static void window_size_callback(GLFWwindow* window, int width, int height)
+    {
+        static_cast<Window*>(glfwGetWindowUserPointer(window))->projection.update_projection(0, width, 0, height);
     }
 
     static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -26,7 +30,7 @@ namespace Horatio
         }
     }
 
-    Window::Window(const std::string &window_name, int width, int height, bool fullscreen, const std::vector<Hint>& window_hints)
+    Window::Window(const std::string &window_name, int width, int height, bool fullscreen, const std::vector<Hint>& window_hints) : projection(0, width, 0, height)
     {
         if(!glfwInit())
         {
