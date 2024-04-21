@@ -16,4 +16,4 @@ target_sources(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME} PRIVATE Horatio)
 
 # Probably not the correct way to do this
-file(COPY ${CMAKE_CURRENT_SORUCE_DIR}res DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/res DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
