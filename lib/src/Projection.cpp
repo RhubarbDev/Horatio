@@ -36,7 +36,7 @@ namespace Horatio
         data[0] = 2.0f / (x2 - x1);
         data[5] = 2.0f / (y2 - y1);
         data[10] = -1.0f;
-
+        
         data[12] = -(x2 + x1) / (x2 - x1);
         data[13] = -(y2 + y1) / (y2 - y1);
     }
