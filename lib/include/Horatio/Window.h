@@ -6,6 +6,7 @@
 #include <GLFW/glfw3.h>
 #include <vector>
 #include <string>
+#include <memory>
 
 namespace Horatio
 {
@@ -25,6 +26,14 @@ namespace Horatio
         void swap_buffers();
         void clear_buffer();
     private:
-        GLFWwindow* window;
+        struct DestroyWindow
+        {
+            void operator()(GLFWwindow* window) {
+                glfwDestroyWindow(window);
+            }
+        };
+
+        typedef std::unique_ptr<GLFWwindow, DestroyWindow> smart_glfw_window;
+        smart_glfw_window window;
     };
 }

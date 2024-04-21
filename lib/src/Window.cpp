@@ -8,7 +8,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <unordered_map>
 
 namespace Horatio
 {
@@ -48,15 +47,15 @@ namespace Horatio
 
         glfwSwapInterval(1);
 
-        window = glfwCreateWindow(width, height, window_name.c_str(), fullscreen ? glfwGetPrimaryMonitor() : nullptr, nullptr);
+        window = smart_glfw_window(glfwCreateWindow(width, height, window_name.c_str(), fullscreen ?  glfwGetPrimaryMonitor() : nullptr, nullptr));
 
         if(!window)
         {
             throw std::runtime_error("Couldn't create window");
         }
 
-        glfwSetWindowUserPointer(window, this);
-        glfwMakeContextCurrent(window);
+        glfwSetWindowUserPointer(window.get(), this);
+        glfwMakeContextCurrent(window.get());
 
         const auto error = glewInit();
         if(error != GLEW_OK)
@@ -64,14 +63,14 @@ namespace Horatio
             throw std::runtime_error("Couldn't initialse GLEW: " + std::string(reinterpret_cast<char const*>(glewGetErrorString(error))));
         }
 
-        glfwSetWindowCloseCallback(window, window_close_callback);
-        glfwSetWindowSizeCallback(window, window_size_callback);
-        glfwSetKeyCallback(window, key_callback);
+        glfwSetWindowCloseCallback(window.get(), window_close_callback);
+        glfwSetWindowSizeCallback(window.get(), window_size_callback);
+        glfwSetKeyCallback(window.get(), key_callback);
     }
 
     Window::~Window()
     {
-        glfwDestroyWindow(window);
+        if(!!window) glfwDestroyWindow(window.get());
     }
 
     void Window::poll_events()
@@ -81,7 +80,7 @@ namespace Horatio
 
     void Window::swap_buffers()
     {
-        glfwSwapBuffers(window);
+        glfwSwapBuffers(window.get());
     }
     void Window::clear_buffer()
     {

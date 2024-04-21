@@ -31,7 +31,7 @@ namespace Horatio
         int width = data["window"]["width"];
         int height = data["window"]["height"];
 
-        primary_window = new Window(name, width, height);
+        primary_window = std::make_unique<Window>(name, width, height);
     }
 }
 
